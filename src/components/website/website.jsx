@@ -21,6 +21,9 @@ import AboutUs from '../otherpages/AboutUs';
 import Map from '../Map';
 import validator from 'validator';
 import Stepper from './Stepper';
+import { FloatingWhatsApp } from 'react-floating-whatsapp-button'
+import 'react-floating-whatsapp-button/dist/index.css'
+
 
 
 import {useDispatch, useSelector} from 'react-redux';
@@ -429,6 +432,7 @@ function Website() {
   return (
     <>
       {/* login */}
+      <FloatingWhatsApp phone="+971562871522" size="50px"/>
       <div className="main">
         <div className="container-fluid">
           <div className="row d-flex">

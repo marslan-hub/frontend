@@ -81,5 +81,5 @@ const MapContainer = ({ google, location = [] }) => {
 };
 
 export default GoogleApiWrapper({
-  apiKey: process.env.GOOGLE_MAP_API,
+  apiKey: process.env.REACT_APP_GOOGLE_MAP_API,
 })(MapContainer);
