@@ -232,7 +232,7 @@ function RecentPlans() {
     setparkingFloor(parkingFloor);
 
     extraFeatures?.map((itm, i) =>
-      extFeatures0.includes(itm.id)
+      extFeatures.includes(itm.id)
         ? console.log("true 1 2 3")
         : console.log("false 1 2 3")
     );

@@ -7,9 +7,9 @@ import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import Api from "../../../../../apis/apis";
 import Notifications from "../../../../../notifications/notifications";
+import Map from "../../../../Map";
 const currency = global.config.i18n.currency.AED;
 
-import Map from "../../../../Map";
 
 function CleanerTask() {
   const [show, setShow] = useState(false);
@@ -248,7 +248,7 @@ function CleanerTask() {
                   {itm.status == "completed" || itm.status == "reviewed" ? (
                     ""
                   ) : (
-                    <button className={"btn btn-primary"} 
+                    <button className={"btn btn-primary"}
                     onClick={() => {
                       setBookingId(itm.id);
                       handleShow();

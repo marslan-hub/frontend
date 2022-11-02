@@ -497,16 +497,16 @@ function Sidebar() {
                       Links
                     </Link>
                   </div>
-                  <div onClick={''} className="sidebar-links">
-                    {/* <p style={{ background: dispBar.color2 ? "rgb(255, 123, 0)" : "transparent" }}></p>*/}
-                    {/* <img src={image.image2} alt="" />*/}
-                    <Link
-                      to={'/aff-link-desc'}
-                      style={{color: 'rgb(255, 123, 0)'}}
-                    >
-                      Links Detail
-                    </Link>
-                  </div>
+                  {/*<div onClick={''} className="sidebar-links">*/}
+                  {/*  /!* <p style={{ background: dispBar.color2 ? "rgb(255, 123, 0)" : "transparent" }}></p>*!/*/}
+                  {/*  /!* <img src={image.image2} alt="" />*!/*/}
+                  {/*  <Link*/}
+                  {/*    to={'/aff-link-desc'}*/}
+                  {/*    style={{color: 'rgb(255, 123, 0)'}}*/}
+                  {/*  >*/}
+                  {/*    Links Detail*/}
+                  {/*  </Link>*/}
+                  {/*</div>*/}
                   <div onClick={''} className="sidebar-links">
                     {/* <p style={{ background: dispBar.color2 ? "rgb(255, 123, 0)" : "transparent" }}></p>*/}
                     {/* <img src={image.image2} alt="" />*/}

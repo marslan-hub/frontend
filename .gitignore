@@ -29,3 +29,6 @@ yarn-error.log*
 /.zip
 .zip/
 .vscode/settings.json
+
+package-lock.json
+

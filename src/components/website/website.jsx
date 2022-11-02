@@ -1684,7 +1684,7 @@ function Website() {
                 height: "auto",
               }}
           >
-            <div dangerouslySetInnerHTML={{__html: desc}}></div>
+            <pre className="readMorePreTag" style={{ fontFamily: "inherit"}} dangerouslySetInnerHTML={{__html: desc}}></pre>
           </div>
         </Modal.Body>
         <Modal.Footer>

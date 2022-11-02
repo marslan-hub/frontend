@@ -52,15 +52,15 @@ function AffiliateDashboard() {
               </span>
             </h4>
           </div>
-          <div className={'dashboardDivCounter col-12 col-sm ms-sm-2'}>
-            <h4>
-              Commission{' '}
-              <span>
-                <span style={{visibility: 'hidden'}}>d</span> {currency}
-                {loginData}
-              </span>
-            </h4>
-          </div>
+          {/*<div className={'dashboardDivCounter col-12 col-sm ms-sm-2'}>*/}
+          {/*  <h4>*/}
+          {/*    Commission{' '}*/}
+          {/*    <span>*/}
+          {/*      <span style={{visibility: 'hidden'}}>d</span> {currency}*/}
+          {/*      {loginData}*/}
+          {/*    </span>*/}
+          {/*  </h4>*/}
+          {/*</div>*/}
         </div>
       </div>
       <div style={{padding: '13px 0'}}></div>

@@ -31,6 +31,9 @@
 .accordion-item {
   border: none;
 }
+.readMorePreTag iframe{
+  width: 100%;
+}
 .multi-step {
   margin-top: 2%;
   background: white;

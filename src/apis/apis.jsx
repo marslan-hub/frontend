@@ -5,7 +5,7 @@ import Notifications from '../notifications/notifications';
 const local_url = 'http://localhost:4700/';
 
 // const api_url = live_url;
-const api_url = local_url;
+const api_url = process.env.REACT_APP_LIVE_URL;
 
 let token = null;
 

@@ -239,7 +239,7 @@ function Booking() {
                         <tbody>
                         {bookings?.map((itm, i) => (
                             <tr>
-                              <td>{i + 1}{itm.id}</td>
+                              <td>{itm.id}</td>
                               <td>{itm.carType}</td>
                               <td>{itm.planId}</td>
                               <td>{itm.userId}</td>

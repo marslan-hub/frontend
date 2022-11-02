@@ -7,9 +7,9 @@ import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import Api from '../../../../apis/apis';
 import Notifications from '../../../../notifications/notifications';
+import Table from 'react-bootstrap/Table';
 const currency = global.config.i18n.currency.AED;
 const countryCode = global.config.i18n.country.AED;
-import Table from 'react-bootstrap/Table';
 
 function AssignedBookings() {
   const [show, setShow] = useState(false);
@@ -185,7 +185,7 @@ function AssignedBookings() {
                   <td>{itm.cleaner?itm.cleaner:<button onClick={()=>{
                     setEditIndex(itm.id); handleShow();
                   }} className={'btn btn-primary'}>Assign</button>}</td>
-             
+
                   <td>
                     {itm.cleanerImg1?<><a target="_blank" href={itm.cleanerImgLink1} rel="noreferrer">Image 1</a><br/></>:''}
                     {itm.cleanerImg2?<><a target="_blank" href={itm.cleanerImgLink2} rel="noreferrer">Image 2</a><br/></>:''}

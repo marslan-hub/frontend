@@ -38,20 +38,20 @@
 }
 
 @media screen and (min-width:901px) {
-    .sidebar-wrapper {
-        display: block !important;
-        position: relative;
-        width: 19%;
-        height: 100%;
-    }
+    /*.sidebar-wrapper {*/
+    /*    !*display: block !important;*!*/
+    /*    position: relative;*/
+    /*    width: 19%;*/
+    /*    height: 100%;*/
+    /*}*/
 
-    .sidebar {
-        width: 100%;
-    }
+    /*.sidebar {*/
+    /*    width: 100%;*/
+    /*}*/
 
-    .close-sidebar {
-        display: none !important;
-    }
+    /*.close-sidebar {*/
+    /*    !*display: none !important;*!*/
+    /*}*/
 }
 
 .sidebar-cont {

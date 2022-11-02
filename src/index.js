@@ -4,8 +4,8 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { RecoilRoot } from 'recoil';
 
-import { Provider } from "react-redux";
-import Store from "./Store.redux";
+// import { Provider } from "react-redux";
+// import Store from "./Store.redux";
 
 
 
