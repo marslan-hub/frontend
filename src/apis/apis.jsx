@@ -891,6 +891,19 @@ export default class Api {
     }
   };
 
+  static updateMonthlyWashDate1 = async (data) => {
+    try {
+      console.log(data);
+      const res = await axios.put(
+          api_url + `update-wash-date1/${data.id}`,
+          data,
+      );
+      return res.data;
+    } catch (error) {
+      return error.data;
+    }
+  };
+
   static getAffiliateCommmission = async (data) => {
     try {
       data = {

@@ -21,7 +21,7 @@ import AboutUs from '../otherpages/AboutUs';
 import Map from '../Map';
 import validator from 'validator';
 import Stepper from './Stepper';
-import { FloatingWhatsApp } from 'react-floating-whatsapp-button'
+import { FloatingWhatsApp } from 'react-floating-whatsapp'
 import 'react-floating-whatsapp-button/dist/index.css'
 
 
@@ -263,16 +263,14 @@ function Website() {
 
   const onToken = async (token) => {
     if (
-      model == null ||
-      model == '' ||
+      usrName == null ||
+      usrName == '' ||
+      usrAddress == null ||
+      usrAddress == '' ||
       plate == null ||
       plate == '' ||
       brand == null ||
-      brand == '' ||
-      parkingFloor == null ||
-      parkingFloor == '' ||
-      parkingNo == null ||
-      parkingNo == ''
+      brand == ''
     ) {
       await Notifications.errorMsg('Please enter data in all the fields');
       return;
@@ -431,8 +429,7 @@ function Website() {
 
   return (
     <>
-      {/* login */}
-      <FloatingWhatsApp phone="+971562871522" size="50px"/>
+      <FloatingWhatsApp phoneNumber="+971562871522" accountName="Eco Friendly Parking Car Wash" avatar={logo} statusMessage=""/>
       <div className="main">
         <div className="container-fluid">
           <div className="row d-flex">
@@ -987,7 +984,7 @@ function Website() {
                         <div className="container-fluid mt-2 p-4">
                           <div className="row">
                             <div className="col-lg-6 col-md-6 col-sm-6 d-flex flex-column">
-                              <label>Date</label>
+                              <label>Date <span className="requiredSymbol">*</span></label>
                               <input
                                 required
                                 onChange={(e) => {
@@ -1034,12 +1031,12 @@ function Website() {
                           </div>
                         </div>
                       )}
-                      {usr?.email == '' || usr?.email == null ? (
+                      {usr?.email == '' || usr?.email == null || true ? (
                         <>
                           <div className="container-fluid mt-4 px-4">
                             <div className="row">
                               <div className="col-lg-6 col-md-6 col-sm-6 d-flex flex-column">
-                                <label>Name</label>
+                                <label>Name <span className="requiredSymbol">*</span></label>
                                 <input
                                   required
                                   value={usrName}
@@ -1056,7 +1053,7 @@ function Website() {
                                                                         // <input required value={usrEmail} onChange={(e)=>{setUsrEmail(e.target.value)}}  className='form-control' type={'email'}/>
                                                                     </div> */}
                               <div className="col-lg-6 col-md-6 col-sm-6 d-flex flex-column">
-                                <label>Apt no. or Building Name </label>
+                                <label>Apt no. or Building Name <span className="requiredSymbol">*</span></label>
                                 <input
                                   required
                                   value={usrAddress}
@@ -1073,11 +1070,11 @@ function Website() {
                       ) : (
                         ''
                       )}
-                      <div className="mt-4 p-2">
+                      <div className="p-2">
                         <div className="container-fluid mt-2">
                           <div className="row">
                             <div className="col-lg-6 col-md-6 col-sm-6 d-flex flex-column">
-                              <label>Brand</label>
+                              <label>Brand <span className="requiredSymbol">*</span></label>
                               <input
                                 required
                                 onChange={(e) => {
@@ -1089,7 +1086,7 @@ function Website() {
                               />
                             </div>
                             <div className="col-lg-6 col-md-6 col-sm-6 d-flex flex-column">
-                              <label>Plate No</label>
+                              <label>Plate No <span className="requiredSymbol">*</span></label>
                               <input
                                 required
                                 onChange={(e) => {
@@ -1177,6 +1174,7 @@ function Website() {
                         {couponApplied ? subTotal : "0"} AED
                       </h4> */}
                       <p className="text-center mt-4 ">
+                        {(packageType == 'monthly' || date) && usrName && usrAddress && brand && plate && (
                         <StripeCheckout
                           name={
                             'Pay ' + couponApplied ? subTotal : amount + '.00'
@@ -1184,8 +1182,9 @@ function Website() {
                           amount={couponApplied ? subTotal * 100 : amount * 100} // cents
                           currency="AED" // the pop-in header title
                           token={onToken}
-                          stripeKey="pk_test_51LXoKNA82nvbi04Cmtz1dSfDSzwo3cYWyhHL1SqeoWxtMqfEIsA25M9VPayqiAVn6acHmUyHm9UJXTR6WggyOfXZ00AWulYq4G"
+                          stripeKey={process.env.REACT_APP_STRIPESID}
                         />
+                        )}
                         {/* <button onClick={submitForm}>Get</button>*/}
                       </p>
                       <p className={'text-center mt-2'}>

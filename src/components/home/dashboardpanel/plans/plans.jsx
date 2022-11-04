@@ -71,7 +71,7 @@ function Plans() {
               <th>PRICE</th>
               {/* <th>TIME</th>*/}
               <th>PLAN TYPE</th>
-              <th>Features</th>
+              <th className="columnWithIframe">Features</th>
               <th>Edit</th>
               <th>Delete</th>
             </tr>
@@ -86,7 +86,7 @@ function Plans() {
                   <td>{itm.price}</td>
                   {/* <td>{itm.time}</td>*/}
                   <td>{itm.planType}</td>
-                  <td dangerouslySetInnerHTML={{__html: itm.feature1}}></td>
+                  <td className="columnWithIframe" dangerouslySetInnerHTML={{__html: itm.feature1}}></td>
                   <td onClick={()=>{
                     editPlan(itm.id);
                   }}><i style={{color: 'green', cursor: 'pointer'}} className={'fas fa-pen'}></i></td>

@@ -195,13 +195,13 @@ function CompleteBookings() {
 
                                 <td>{currency}{itm.amount}</td>
                                 <td style={{color:"orange"}}>{itm.status}</td>
-                                <td>{itm.assignCleaner?itm.assignCleaner:<button onClick={()=>{setEditIndex(itm.id);handleShow()}} className={'btn btn-primary'}>Assign</button>}</td>
+                                <td>{itm.cleaner?itm.cleaner:<button onClick={()=>{setEditIndex(itm.id);handleShow()}} className={'btn btn-primary'}>Assign</button>}</td>
                                 <td>
                                     {itm.cleanerImg1?<><a target="_blank" href={itm.cleanerImgLink1} rel="noreferrer">Image 1</a><br/></>:""}
                                     {itm.cleanerImg2?<><a target="_blank" href={itm.cleanerImgLink2} rel="noreferrer">Image 2</a><br/></>:""}
                                     {itm.cleanerImg3?<><a target="_blank" href={itm.cleanerImgLink3} rel="noreferrer">Image 3</a><br/></>:""}
                                 </td>
-                                <td></td>
+                                <td>{itm.review}</td>
                                 {/*<td>{itm.paymentId}</td>*/}
                                 <td>{itm.createdAt}</td>
                                 {/*<td onClick={}><i style={{color:"green",cursor:"pointer"}} className={'fas fa-pen'}></i></td>*/}

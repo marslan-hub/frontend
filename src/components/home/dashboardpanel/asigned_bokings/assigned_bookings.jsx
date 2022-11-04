@@ -29,6 +29,14 @@ function AssignedBookings() {
   const [bookingId, setBookingId]=useState(null);
   const [selectedSlot, setSelectedSlot]=useState(null);
   const [table, setTable] = useState("assign_booking");
+  const [newDateModal, setNewDateModal] = useState(false);
+  const dateModalClose = () => setNewDateModal(false);
+  const dateModalShow = () => setNewDateModal(true);
+  const [ModalData, setModalData] = useState({
+    id: '',
+    oldDate: '',
+    newDate: '',
+  });
 
   useEffect(async ()=>{
     const res2=await Api.getAllSlots();
@@ -113,6 +121,38 @@ function AssignedBookings() {
   }
 
 
+  const EditDataModal = (item) => {
+    console.log('item', item);
+    setModalData((oldData) => {
+      return {
+        ...oldData,
+        oldDate: item.date,
+        id: item.id,
+      };
+    });
+    dateModalShow();
+  };
+
+
+  const updateDate = async (e) => {
+    e.preventDefault();
+
+    const res = await Api.updateMonthlyWashDate1(ModalData);
+
+    if (res.status == '200') {
+      await Notifications.successMsg(res.message);
+      dateModalClose();
+      setModalData({});
+      window.location.reload();
+
+    } else {
+      await Notifications.errorMsg('Error in Updating Wash Date');
+      dateModalClose();
+      setModalData({});
+    }
+  };
+
+
   return (
     <>
       <div className='driver-head'>
@@ -168,7 +208,14 @@ function AssignedBookings() {
                     {itm.extraFeatures}
                   </td>
                   <td>{itm.bookingType}</td>
-                  <td>{itm.date}</td>
+                  <td>{itm.date}
+                    <i
+                        className="fas fa-edit"
+                        onClick={() => {
+                          EditDataModal(itm);
+                        }}
+                    ></i>
+                  </td>
                   <td>{itm.time?itm.time:<button onClick={()=>{
                     setBookingId(itm.id); handleShow1();
                   }} className={'btn btn-primary'}>Assign</button>}</td>
@@ -262,6 +309,51 @@ function AssignedBookings() {
                                 Close
               </Button>
               <Button type={'submit'} variant="primary">Save</Button>
+            </Modal.Footer>
+          </form>
+        </Modal>
+
+
+        {/* date Edit modal */}
+        <Modal
+            show={newDateModal}
+            onHide={dateModalClose}
+            backdrop="static"
+            keyboard={false}
+        >
+          <form onSubmit={updateDate}>
+            <Modal.Header closeButton>
+              <Modal.Title>Assign New Date</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <Form.Group className="mb-3">
+                <Form.Label>Old Date</Form.Label>
+                <Form.Control type="date" value={ModalData.oldDate} disabled />
+              </Form.Group>
+              <Form.Group className="mb-3">
+                <Form.Label>Assign Date</Form.Label>
+                <Form.Control
+                    type="date"
+                    placeholder="Choose a Date"
+                    onChange={(e) => {
+                      setModalData((old) => {
+                        return {
+                          ...old,
+                          newDate: e.target.value,
+                        };
+                      });
+                    }}
+                    value={ModalData.newDate}
+                />
+              </Form.Group>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={dateModalClose}>
+                Close
+              </Button>
+              <Button type={'submit'} variant="primary">
+                Save
+              </Button>
             </Modal.Footer>
           </form>
         </Modal>
