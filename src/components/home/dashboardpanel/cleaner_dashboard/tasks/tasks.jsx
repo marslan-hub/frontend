@@ -8,6 +8,8 @@ import Form from "react-bootstrap/Form";
 import Api from "../../../../../apis/apis";
 import Notifications from "../../../../../notifications/notifications";
 import Map from "../../../../Map";
+import Accordion from "react-bootstrap/Accordion";
+import Table from "react-bootstrap/Table";
 const currency = global.config.i18n.currency.AED;
 
 
@@ -19,6 +21,7 @@ function CleanerTask() {
   const [loadingBtn,setLoadingBtn]=useState(false)
 
   const [bookings, setBookings] = useState(null);
+  const [bookings1, setBookings1] = useState(null);
   const [bookingId, setBookingId] = useState(null);
 
   const [editIndex, setEditIndex] = useState(null);
@@ -45,6 +48,7 @@ function CleanerTask() {
     const res = await Api.allBookingsByCleanerId(data);
     if (res.status == "200") {
       setBookings(res.data);
+      booking1Calculation(res.data)
     }
 
     // let res1=await Api.getAllCleaners();
@@ -61,6 +65,19 @@ function CleanerTask() {
       }, 500);
     });
   }, []);
+
+  const booking1Calculation = ( bookingData ) => {
+    let booking1C = [];
+    let bookingDate = '';
+    console.log("bookingData",bookingData)
+    bookingData.map((itm,i) => {
+      console.log("itm",itm)
+      if(itm.date !== bookingDate)
+        booking1C.push(itm.date)
+      bookingDate = itm.date;
+    })
+    setBookings1(booking1C);
+  }
 
   const history = useHistory();
 
@@ -162,70 +179,78 @@ function CleanerTask() {
         </div>
       </div>
       <div className="dashboard-table-wrapper_ p-3">
-        <table
-          id="example"
-          className="table table-hover table-bordered"
-          style={{ overFlow: "auto" }}
-        >
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>CAR TYPE</th>
-              <th>PLAN</th>
-              <th>USER</th>
-              <th>Ext Features</th>
-              <th>DATE</th>
-              <th>TIME</th>
-              <th>BRAND</th>
-              <th>MODEL</th>
-              <th>PLATE</th>
-              <th>COLOR</th>
-              <th>PARKING#</th>
-              <th>PARKING FLOOR</th>
-              <th>LOCATION</th>
-              <th>AMOUNT</th>
-              <th>STATUS</th>
-              {/* <th>CLEANER</th> */}
-              <th>REVIEW</th>
-              {/* <th>PAYMENT</th>*/}
-              <th>CREATED</th>
-              <th>Action</th>
-              {/* <th>Delete</th>*/}
-            </tr>
-          </thead>
-          <tbody>
-            {bookings?.map((itm, i) => (
-              <tr>
-                <td>{itm.id}</td>
-                <td>{itm.carType}</td>
-                <td>{itm.planId}</td>
-                <td>{itm.userId}</td>
-                <td>{itm.extraFeatures}</td>
-                {/* <td>{itm.comment}</td>*/}
-                <td>{itm.date}</td>
-                <td>{itm.time}</td>
-                <td>{itm.brand}</td>
-                <td>{itm.model}</td>
-                <td>{itm.plate}</td>
-                <td>{itm.color}</td>
-                <td>{itm.parkingNo}</td>
-                <td>{itm.parkingFloor}</td>
-                <td>
-                  {itm.booking_location == "" ? "N/A" : <Button
-                    onClick={() => {
-                      ViewMapModal(itm.booking_location);
-                    }}
-                  >
-                    <i className="fas fa-eye"></i> View
-                  </Button>}
 
-                </td>
-                <td>
-                  {currency}
-                  {itm.amount}
-                </td>
-                <td style={{ color: "orange" }}>{itm.status}</td>
-                {/* <td>
+
+        <Accordion>
+          {bookings1?.map((itm1, i) => {
+            let bookingDate1 = itm1;
+            return (
+                <Accordion.Item key={i} eventKey={i}>
+                  <Accordion.Header>{itm1}</Accordion.Header>
+                  <Accordion.Body>
+                    <Table id={"example" + 1} className="table table-hover table-bordered" responsive>
+                      <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>CAR TYPE</th>
+                        <th>PLAN</th>
+                        <th>USER</th>
+                        <th>Ext Features</th>
+                        <th>DATE</th>
+                        <th>TIME</th>
+                        <th>BRAND</th>
+                        <th>MODEL</th>
+                        <th>PLATE</th>
+                        <th>COLOR</th>
+                        <th>PARKING#</th>
+                        <th>PARKING FLOOR</th>
+                        <th>LOCATION</th>
+                        <th>AMOUNT</th>
+                        <th>STATUS</th>
+                        {/* <th>CLEANER</th> */}
+                        <th>REVIEW</th>
+                        {/* <th>PAYMENT</th>*/}
+                        <th>CREATED</th>
+                        <th>Action</th>
+                        {/* <th>Delete</th>*/}
+                      </tr>
+                      </thead>
+                      <tbody>
+                      {
+                        bookings?.map((itm, i)=> {
+                          if(bookingDate1 == itm.date)
+                            return(
+                                <tr>
+                                  <td>{itm.id}</td>
+                                  <td>{itm.carType}</td>
+                                  <td>{itm.planId}</td>
+                                  <td>{itm.userId}</td>
+                                  <td>{itm.extraFeatures}</td>
+                                  {/* <td>{itm.comment}</td>*/}
+                                  <td>{itm.date}</td>
+                                  <td>{itm.time}</td>
+                                  <td>{itm.brand}</td>
+                                  <td>{itm.model}</td>
+                                  <td>{itm.plate}</td>
+                                  <td>{itm.color}</td>
+                                  <td>{itm.parkingNo}</td>
+                                  <td>{itm.parkingFloor}</td>
+                                  <td>
+                                    {itm.booking_location == "" ? "N/A" : <Button
+                                        onClick={() => {
+                                          ViewMapModal(itm.booking_location);
+                                        }}
+                                    >
+                                      <i className="fas fa-eye"></i> View
+                                    </Button>}
+
+                                  </td>
+                                  <td>
+                                    {currency}
+                                    {itm.amount}
+                                  </td>
+                                  <td style={{ color: "orange" }}>{itm.status}</td>
+                                  {/* <td>
                   {itm.assignCleaner ? (
                     itm.assignCleaner
                   ) : (
@@ -240,26 +265,34 @@ function CleanerTask() {
                     </button>
                   )}
                 </td> */}
-                <td></td>
-                {/* <td>{itm.paymentId}</td>*/}
-                <td>{itm.createdAt}</td>
-                <td
-                >
-                  {itm.status == "completed" || itm.status == "reviewed" ? (
-                    ""
-                  ) : (
-                    <button className={"btn btn-primary"}
-                    onClick={() => {
-                      setBookingId(itm.id);
-                      handleShow();
-                    }}>Complete</button>
-                  )}
-                </td>
-                {/* <td><i style={{color:"red",cursor:"pointer"}} className={'fas fa-trash'}></i></td>*/}
-              </tr>
-            ))}
-          </tbody>
-        </table>
+                                  <td></td>
+                                  {/* <td>{itm.paymentId}</td>*/}
+                                  <td>{itm.createdAt}</td>
+                                  <td
+                                  >
+                                    {itm.status == "completed" || itm.status == "reviewed" ? (
+                                        ""
+                                    ) : (
+                                        <button className={"btn btn-primary"}
+                                                onClick={() => {
+                                                  setBookingId(itm.id);
+                                                  handleShow();
+                                                }}>Complete</button>
+                                    )}
+                                  </td>
+                                  {/* <td><i style={{color:"red",cursor:"pointer"}} className={'fas fa-trash'}></i></td>*/}
+                                </tr>)
+                        })
+                      }
+                      </tbody>
+                    </Table>
+                  </Accordion.Body>
+                </Accordion.Item>
+
+            )},
+          )}
+        </Accordion>
+
 
         <Modal
           show={show}
