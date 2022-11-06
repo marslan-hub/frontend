@@ -153,8 +153,8 @@ function AffiliateLinks() {
                   <th>Car Type</th>
                   <th>Plan</th>
                   <th>TYPE</th>
-                  <th>DISCOUNT</th>
                   <th>COMMISSION</th>
+                  <th>DISCOUNT</th>
                   <th>TIME USD</th>
                 </tr>
               </thead>
