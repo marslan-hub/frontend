@@ -14,6 +14,7 @@ function AffiliateLinks() {
   const history=useHistory();
 
   const [links, setLinks]=useState(null);
+  const [plans, setPlans]=useState(null);
   const [linkView, setLinkView]=useState(null);
   const [selectedCode, setSelectedCode]=useState(null);
 
@@ -22,6 +23,11 @@ function AffiliateLinks() {
   const handleShow = () => setShow(true);
 
   useEffect(async ()=>{
+
+    const res3=await Api.getAllPlans();
+    if (res3.status == '200') {
+      setPlans(res3.data);
+    }
     const user=JSON.parse(sessionStorage.getItem('auth'));
     const data={
       id: user.id,
@@ -117,7 +123,7 @@ function AffiliateLinks() {
                     viewLinkDetailsFun(itm.code);
                     handleShow();
                     setSelectedCode(itm.code);
-                  
+
                   }}
                   className={'btn btn-primary'}>View</button></td>
                 </tr>
@@ -145,6 +151,7 @@ function AffiliateLinks() {
                 <tr>
                   <th>CODE</th>
                   <th>Car Type</th>
+                  <th>Plan</th>
                   <th>TYPE</th>
                   <th>DISCOUNT</th>
                   <th>COMMISSION</th>
@@ -157,7 +164,8 @@ function AffiliateLinks() {
                     <tr>
                       <td>{itm.code}</td>
                       <td>{itm.carType}</td>
-                      <td>{itm.discount}</td>
+                      <td>{plans.find(plan => plan.id === itm.planId).name}</td>
+                      <td>{itm.type}</td>
                       <td>{itm.commission}</td>
                       <td>{itm.discount}</td>
                       <td>{itm.timeUsed}</td>

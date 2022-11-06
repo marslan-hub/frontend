@@ -143,26 +143,27 @@ function Links() {
       if (res.status == '200') {
         await Notifications.successMsg(res.message);
         let rees1; let rees2;
-        plansSuv?.map(async (itm, i)=>{
-          const commission=document.getElementById('suvC'+i).value;
-          const discount=document.getElementById('suvD'+i).value;
+        plansDescSuv?.map(async (itm, i)=>{
+          const commission=document.getElementById('suvC'+itm.id).value;
+          const discount=document.getElementById('suvD'+itm.id).value;
           const param={
             userId: selectedAffiliate,
-            planId: itm.id,
+            planId: itm.planId,
             carType: 'SUV',
             type: type,
             code: linksCode,
             commission: commission,
             discount: discount,
           };
+          console.log("param",param)
           rees1=await Api.updateGenerateLinkDesc(param);
         });
-        plansSedan?.map(async (itm, i)=>{
-          const commission=document.getElementById('sedC'+i).value;
-          const discount=document.getElementById('sedD'+i).value;
+        plansDescSedan?.map(async (itm, i)=>{
+          const commission=document.getElementById('sedC'+itm.id).value;
+          const discount=document.getElementById('sedD'+itm.id).value;
           const param={
             userId: selectedAffiliate,
-            planId: itm.id,
+            planId: itm.planId,
             carType: 'Sedan',
             type: type,
             code: linksCode,
@@ -380,21 +381,19 @@ function Links() {
                     </tr>
                   )) :
                   plansSuv?.map((itm1, i)=>
-                    plansDescSuv?.map((itm, i)=>
+                    plansDescSuv?.map((itm, ii)=>
 
                     (itm1.id==itm.planId)?
                       <tr>
-                        {console.log(itm.planId)}
-                        {console.log(itm1.id)}
                         <td>{itm1.name}</td>
                         <td><input defaultValue={itm.commission}
                           className={'form-control'}
-                          type={'number'} id={'suvC'+i}
+                          type={'number'} id={'suvC'+itm.id}
                         /></td>
                         <td><input defaultValue={itm.discount}
                           className={'form-control'}
                           type={'number'}
-                          id={'suvD'+i}
+                          id={'suvD'+itm.id}
                         /></td>
                       </tr>:
                         false,
@@ -428,12 +427,12 @@ function Links() {
                           <td>{itm1.name}</td>
                           <td><input defaultValue={itm.commission}
                             className={'form-control'}
-                            type={'number'} id={'sedC'+i}
+                            type={'number'} id={'sedC'+itm.id}
                           /></td>
                           <td><input defaultValue={itm.discount}
                             className={'form-control'}
                             type={'number'}
-                            id={'sedD'+i}
+                            id={'sedD'+itm.id}
                           /></td>
                         </tr>:false,
                     ),
