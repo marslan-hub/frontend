@@ -156,7 +156,7 @@ function UserBooking() {
                   <td>{itm.parkingFloor}</td>
                   <td>{currency}{itm.amount}</td>
                   <td style={{color: 'orange'}}>{itm.status}</td>
-                  <td>{itm.assignCleaner}</td>
+                  <td>{itm.cleaner}</td>
                   <td>{itm.review}</td>
                   <td>
                     {itm.cleanerImg1?<><a target="_blank" href={itm.cleanerImgLink1} rel="noreferrer">Image 1</a><br/></>:''}
