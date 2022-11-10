@@ -1053,7 +1053,7 @@ function Website() {
                                                                         // <input required value={usrEmail} onChange={(e)=>{setUsrEmail(e.target.value)}}  className='form-control' type={'email'}/>
                                                                     </div> */}
                               <div className="col-lg-6 col-md-6 col-sm-6 d-flex flex-column">
-                                <label>Apt no. or Building Name <span className="requiredSymbol">*</span></label>
+                                <label>Building or Villas Name <span className="requiredSymbol">*</span></label>
                                 <input
                                   required
                                   value={usrAddress}
