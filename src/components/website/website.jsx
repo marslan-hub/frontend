@@ -1564,9 +1564,7 @@ function Website() {
                       }}
                     />
                     <p>
-                      Here you can use rows and columns to organize your footer
-                      content. Lorem ipsum dolor sit amet, consectetur
-                      adipisicing elit.
+                      Eco friendly car wash actively involved in Dubai market; we are mainly focusing on best way to help vehicle users clean their cars shine way and reach out convenient time.
                     </p>
                   </div>
                   {/* Grid column */}
