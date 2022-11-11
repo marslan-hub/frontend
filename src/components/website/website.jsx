@@ -361,6 +361,7 @@ function Website() {
         affiliateId: link?.userId,
         linkId: linkDes?.id,
         onlyBooking: onlyBooking,
+        booking_location: JSON.stringify(MapReducers.selectedLocation),
       };
 
       const res = await Api.codPayment(data);
