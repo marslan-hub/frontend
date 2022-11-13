@@ -95,7 +95,7 @@ function EditAffiliate() {
             <div className=' load-input'>
               <label>Address</label>
               <input value={address} onChange={(e)=>{
-                setName(e.target.value);
+                setAddres(e.target.value);
               }} required type={'text'} placeholder="Enter Address" className='form-input_ input' />
             </div>
             {/* <div className=' load-input'>*/}
