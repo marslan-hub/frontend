@@ -472,7 +472,7 @@ function Website() {
                     value={loginData} onChange={(e)=>{
                       setData(e.target.value);
                     }} /> */}
-                                <InputGroup className="mb-3 inline">
+                                <InputGroup className="mb-1 inline">
                                   {/* <InputGroup.Text id="basic-addon1">
                                     +971
                     </InputGroup.Text> */}
@@ -490,8 +490,10 @@ function Website() {
                                 {/* <input value="+971"/>
                                 <input
                                 /> */}
-                              </div>
-                            </div>
+				
+				<span className="text-success">055XXXXXXX</span>
+                              </div>	
+                            </div> 
                             {/* <div className="sign-forget">
                               <Link to={'/reset-password'}>
                                Forgot Password?</Link>
